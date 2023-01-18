@@ -1,0 +1,30 @@
+{
+  "name": "mean_authapp",
+  "version": "1.0.0",
+  "description": "mean authentication app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J-SFOX/Mean_authapp.git"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "J-SFOX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/J-SFOX/Mean_authapp/issues"
+  },
+  "homepage": "https://github.com/J-SFOX/Mean_authapp#readme"
+}
