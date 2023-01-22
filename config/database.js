@@ -1,4 +1,7 @@
 module.exports = {
-    database : "mongodb://localhost:27017/meanauth",
-    secret : "yoursecret"
+    database: "mongodb://localhost:27017/meanauthdb",
+    secret: "myonesecret"
 }
+
+
+// 172.17.0.3
