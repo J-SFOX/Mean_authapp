@@ -24,40 +24,42 @@ router.post("/register", (req,res,next) => {
     })
 })
 
-// Authenticate user 
+// Authenticater user 
 router.post("/authenticate", (req,res,next) => {
     const username = req.body.username;
     const password = req.body.password;
-    User.getUserByUsername(username, (err, user)=> {
+    User.getUserByUsername(username, (err, _user)=> {
         // error handling
         if(err) throw err;
         // if there is not user
-        if(!user){
-            res.json({success:false, msg: "user not found"})
+        if(!_user){
+            res.json({success:false, msg: "User Not Found"})
+        }else{
+            User.comparePassword(password, _user.password, (_err, isMatch) => {
+                if (_err) throw _err;
+                if(isMatch){
+                    const token = jwt.sign({ data: _user }, dbConfig.secret, {
+                        expiresIn : 604800 // 1 week
+                    });
+    
+                    res.json({
+                        success: true,
+                        token : `JWT ${token}`,
+                        user : {
+                            id: _user._id,
+                            name: _user.name,
+                            username: _user.username,
+                            email: _user.email
+                        },
+                        msg : "user authenticated"
+                    })
+                }
+                else {
+                    res.json({success:false, msg: "Wrong password "})
+                }
+            })
         }
-        User.comparePassword(password, user.password, (err, isMatch) => {
-            if (err) throw err;
-            if(isMatch){
-                const token = jwt.sign({ data: user }, dbConfig.secret, {
-                    expiresIn : 604800 // 1 week
-                });
-
-                res.json({
-                    success: true,
-                    token : `JWT ${token}`,
-                    user : {
-                        id: user._id,
-                        name: user.name,
-                        username: user.username,
-                        email: user.email
-                    },
-                    msg : "user authenticated"
-                })
-            }
-            else {
-                res.json({success:false, msg: "Wrong password "})
-            }
-        })
+      
     })
 })
 
