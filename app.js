@@ -60,7 +60,7 @@ app.get("/" , (req, res)=>{
 
 // Start Server 
 app.listen(port, () => {
-    console.log("seerver is running in port :" +port)
+    console.log("seerver is running in port :" + port)
 })
 
 

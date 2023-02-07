@@ -10,7 +10,7 @@ import { User } from 'src/app/Models/user';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent  {
   user:User;
   constructor(
     private router: Router,

@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
-import { User } from 'src/app/Models/user';
-import { JsonPipe } from '@angular/common';
-import { response } from 'express';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+
 
 
 @Injectable({
@@ -37,6 +34,9 @@ export class AuthService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.authToken}`
     });
+  //   const authHeader = req.headers['authorization']
+  // const token = authHeader && authHeader.split(' ')[1]
+
     console.log(`Bearer ${this.authToken}`)
    
     return this.httpClient.get(this.baseUrl + '/profile',{ headers: _headers } )
